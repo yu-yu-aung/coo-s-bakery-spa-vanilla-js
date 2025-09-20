@@ -47,19 +47,19 @@ export const handleCreateProductForm = (e) => {
   e.preventDefault();
   const formData = new FormData(e.target);
 
-  // const productCard = productTemplate.content.cloneNode(true);
-  // productCard.querySelector(".product-name").innerText =
-  //   formData.get("product-name");
-  // productCard.querySelector(".product-category").innerText =
-  //   formData.get("selected-category");
-  // productCard.querySelector(".product-price").innerText =
-  //   formData.get("product-price");
+  // Get ImageURL from Uploaded Image
+  const imageFile = formData.get("new-product-image");
+  let imageURL = "";
+  if (imageFile && imageFile instanceof File && imageFile.size > 0) {
+    imageURL = URL.createObjectURL(imageFile);
+  }
 
   productList.append(
     createProductCard({
       name: formData.get("product-name"),
       price: formData.get("product-price"),
       category: formData.get("selected-category"),
+      image: imageURL,
     })
   );
   e.target.reset();

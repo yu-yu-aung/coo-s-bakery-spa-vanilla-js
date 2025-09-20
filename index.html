@@ -12,7 +12,7 @@
     </style>
   </head>
   <body class="bg-gray-50 dark:bg-gray-800 h-full">
-    <div id="app" class="h-full">
+    <div id="app" class="min-h-screen">
       <main class="flex flex-col h-full">
         <header
           class="flex justify-between px-5 py-2 border-b border-gray-200 dark:border-gray-600"
@@ -182,7 +182,10 @@
               </div>
 
               <!-- product grid container  -->
-              <div id="product-container" class="relative">
+              <div
+                id="product-container"
+                class="relative overflow-scroll h-[900px]"
+              >
                 <div
                   id="product-list"
                   class="grid grid-cols-3 gap-5 px-3 py-2"
@@ -263,6 +266,21 @@
                       <option>Smoothie</option>
                       <option>Bread</option>
                     </select>
+
+                    <label
+                      for="new-product-image"
+                      class="block mb-2 mt-2 text-sm font-medium text-gray-900 dark:text-white"
+                      >Upload Image</label
+                    >
+                    <input
+                      type="file"
+                      id="new-product-image"
+                      name="new-product-image"
+                      accept="image/*"
+                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-5 file:bg-blue-400 file:ml-2 file:rounded"
+                      placeholder="Upload Product Photo"
+                      required
+                    />
                   </div>
 
                   <div class="flex items-start mb-5">
@@ -278,7 +296,7 @@
                     <label
                       for="remember"
                       class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                      >I am sure to create the new category.</label
+                      >I am sure to create the new product.</label
                     >
                   </div>
                   <button
@@ -447,27 +465,27 @@
           class="product-card col-span-1 h-auto border border-gray-400 rounded-lg pb-2"
         >
           <div
-            class="w-full h-[50%] overflow-hidden rounded-t-lg border-b-2 border-blue-100 product-image"
+            class="w-full h-[50%] overflow-hidden rounded-t-lg border-b-2 border-blue-100"
           >
             <img
               src="public/images/1.png"
               alt="cake photo"
-              class="w-full h-full object-cover"
+              class="w-full h-full object-cover product-image"
             />
           </div>
 
-          <div class="p-2 flex flex-col gap-2 items-start">
+          <div class="p-2 flex flex-col items-start h-[140px]">
             <span
-              class="border border-blue-200 dark:border-blue-900 bg-blue-50 dark:bg-gray-800 text-gray-900 dark:text-gray-50 rounded-sm text-sm px-2 py-1 inline-block product-category"
+              class="border border-blue-200 dark:border-blue-900 bg-blue-50 dark:bg-gray-800 text-gray-900 dark:text-gray-50 rounded-sm text-sm px-2 py-1 my-2 inline-block product-category"
             >
               Bread
             </span>
             <p
-              class="text-sm line-clamp-2 text-gray-800 dark:text-gray-100 product-name"
+              class="text-sm font-semibold line-clamp-2 text-gray-800 dark:text-gray-100 my-2 product-name"
             >
               Buttery French Morning Croissant
             </p>
-            <div class="flex gap-3 text-gray-600 dark:text-gray-300">
+            <div class="mt-auto mb-1 flex gap-3 text-gray-600 dark:text-gray-300">
               <div class="size-4">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
