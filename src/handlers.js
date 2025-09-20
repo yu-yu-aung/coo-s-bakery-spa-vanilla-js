@@ -1,6 +1,14 @@
-import { themeToggleDarkIcon, themeToggleLightIcon } from "./selectors";
+import { createNewCategoryBtn } from "./category";
+import createProductCard from "./product";
+import {
+  categoryList,
+  productList,
+  productTemplate,
+  themeToggleDarkIcon,
+  themeToggleLightIcon,
+} from "./selectors";
 
-const handleTheme = () => {
+export const handleTheme = () => {
   // toggle icons inside button
   themeToggleDarkIcon.classList.toggle("hidden");
   themeToggleLightIcon.classList.toggle("hidden");
@@ -27,4 +35,33 @@ const handleTheme = () => {
   }
 };
 
-export default handleTheme;
+export const handleCreateCategoryForm = (e) => {
+  e.preventDefault();
+  const formData = new FormData(e.target);
+  categoryList.append(createNewCategoryBtn(formData.get("new-category-name")));
+  e.target.reset();
+  document.querySelector(`[data-drawer-hide="create-category-drawer"]`).click();
+};
+
+export const handleCreateProductForm = (e) => {
+  e.preventDefault();
+  const formData = new FormData(e.target);
+
+  // const productCard = productTemplate.content.cloneNode(true);
+  // productCard.querySelector(".product-name").innerText =
+  //   formData.get("product-name");
+  // productCard.querySelector(".product-category").innerText =
+  //   formData.get("selected-category");
+  // productCard.querySelector(".product-price").innerText =
+  //   formData.get("product-price");
+
+  productList.append(
+    createProductCard({
+      name: formData.get("product-name"),
+      price: formData.get("product-price"),
+      category: formData.get("selected-category"),
+    })
+  );
+  e.target.reset();
+  document.querySelector(`[data-drawer-hide="create-product-drawer"]`).click();
+};
