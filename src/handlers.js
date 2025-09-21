@@ -1,5 +1,6 @@
 import { createNewCategoryBtn } from "./category";
-import createProductCard from "./product";
+import { categories, products } from "./constants";
+import { createProductCard, renderProduct } from "./product";
 import {
   categoryList,
   productList,
@@ -38,7 +39,11 @@ export const handleTheme = () => {
 export const handleCreateCategoryForm = (e) => {
   e.preventDefault();
   const formData = new FormData(e.target);
-  categoryList.append(createNewCategoryBtn(formData.get("new-category-name")));
+  const newCategory = {
+    id: categories[categories.length - 1].id + 1,
+    title: formData.get("new-category-name"),
+  };
+  categoryList.append(createNewCategoryBtn(newCategory));
   e.target.reset();
   document.querySelector(`[data-drawer-hide="create-category-drawer"]`).click();
 };
@@ -64,4 +69,49 @@ export const handleCreateProductForm = (e) => {
   );
   e.target.reset();
   document.querySelector(`[data-drawer-hide="create-product-drawer"]`).click();
+};
+
+export const handleSearchForm = (e) => {
+  e.preventDefault();
+
+  const formData = new FormData(e.target);
+  console.log(formData.get("search"));
+
+  e.target.reset();
+};
+
+export const handleSearch = (e) => {
+  // if (e.key === "Enter") {
+  //   console.log(e.target.value);
+  // }
+
+  const q = e.target.value;
+  renderProduct(products.filter((el) => el.name.toLowerCase().search(q) != -1));
+};
+
+export const handleCategoryList = (e) => {
+  const clickedCategory = e.target.innerText;
+
+  //Remove Classes
+  categoryList.childNodes.forEach((el) => {
+    el.classList.remove(
+      "bg-blue-100",
+      "border",
+      "border-blue-300",
+      "text-blue-800"
+    );
+  });
+
+  //Add Classes to Active Btn
+  e.target.classList.add(
+    "bg-blue-100",
+    "border",
+    "border-blue-300",
+    "text-blue-800"
+  );
+  if (clickedCategory === "All") {
+    renderProduct(products);
+  } else {
+    renderProduct(products.filter((el) => el.category === clickedCategory));
+  }
 };

@@ -15,3 +15,7 @@ export const productForm = document.querySelector("#product-form");
 export const productList = document.querySelector("#product-list");
 
 export const productTemplate = document.querySelector("#product-template");
+
+export const searchForm = document.querySelector("#search-form");
+
+export const searchInput = document.querySelector("#search");

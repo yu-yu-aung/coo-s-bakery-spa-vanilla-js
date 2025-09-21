@@ -1,6 +1,6 @@
-import { productTemplate } from "./selectors";
+import { productList, productTemplate } from "./selectors";
 
-const createProductCard = ({ name, price, category, image }) => {
+export const createProductCard = ({ name, price, category, image }) => {
   const productCard = productTemplate.content.cloneNode(true);
   productCard.querySelector(".product-name").innerText = name;
   productCard.querySelector(".product-category").innerText = category;
@@ -10,4 +10,9 @@ const createProductCard = ({ name, price, category, image }) => {
   return productCard;
 };
 
-export default createProductCard;
+export const renderProduct = (inputProducts) => {
+  productList.innerHTML = "";
+  inputProducts.forEach((product) => {
+    productList.append(createProductCard(product));
+  });
+};
