@@ -11,6 +11,7 @@ import {
   Sun,
   Tag,
   X,
+  User,
 } from "lucide";
 import { themeToggleDarkIcon, themeToggleLightIcon } from "./selectors";
 
@@ -31,6 +32,7 @@ const iconSetup = () => {
       Tag,
       Minus,
       X,
+      User,
     },
   });
 };
